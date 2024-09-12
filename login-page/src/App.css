@@ -1,0 +1,30 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.box {
+  padding: 40px;
+  box-shadow: 1px 3px 18px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+input {
+  margin: 10px 0 10px 0;
+  padding: 7px;
+}
+
+label {
+  text-align: left;
+}
+
+button {
+  margin-top: 20px;
+}
