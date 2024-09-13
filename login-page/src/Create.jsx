@@ -11,7 +11,7 @@ const Create = () => {
         <form>
           <label>Email <span className='asterisk'>*</span></label>
           <input type="text" name='email' id='email' required placeholder='you@henrique.dev' />
-          <label>Pasword <span className='asterisk'>*</span></label>
+          <label>Password <span className='asterisk'>*</span></label>
           <input type='password' name="passoword" id="password" required placeholder='Your Password' />
           <input type='password' name="passoword" id="password" required placeholder='Confirm your Password' />
           <button>Sign up</button>
