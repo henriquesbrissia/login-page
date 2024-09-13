@@ -11,20 +11,33 @@ form {
 }
 
 .box {
-  padding: 40px;
+  margin-top: 40px;
+  min-width: 350px;
+  padding: 40px 40px 30px 40px;
   box-shadow: 1px 3px 18px 1px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
 }
 
 input {
   margin: 10px 0 10px 0;
-  padding: 7px;
+  padding: 8px;
 }
 
 label {
   text-align: left;
 }
 
-button {
-  margin-top: 20px;
+.forgot {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.back {
+  color: #a1a1aa;
+  margin-top: 30px;
+  text-align: left;
+}
+
+.asterisk {
+  color: red;
 }
