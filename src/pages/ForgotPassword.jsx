@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ROUTES } from '../utils/routes';
 
-const Forgot = () => {
+export const ForgotPassword = () => {
   const [email, setEmail] = useState('')
 
   const handleClick = (event) => {
@@ -20,11 +21,9 @@ const Forgot = () => {
           <label>Your email <span className='asterisk'>*</span></label>
           <input type="email" value={email} id='email' onChange={(e) => setEmail(e.target.value)} required placeholder='you@henrique.dev' />
           <button type='submit'>Reset password</button>
-          <Link to="/" className='back'>⭠ back to login page</Link>
+          <Link to={ROUTES.SIGN_IN} className='back'>⭠ back to login page</Link>
         </form>
       </div>
     </>
   )
 }
-
-export default Forgot;
