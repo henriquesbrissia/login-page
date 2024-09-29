@@ -4,6 +4,7 @@ import { ROUTES } from './utils/routes';
 import { SignIn } from './pages/SignIn';
 import { SignUp } from './pages/SignUp';
 import { ForgotPassword } from './pages/ForgotPassword';
+import { ResetPassword } from './pages/ResetPassword';
 
 export const App = () => {
   return (
@@ -13,6 +14,7 @@ export const App = () => {
         <Route path={ROUTES.SIGN_IN} element={<SignIn />} />
         <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
         <Route path={ROUTES.FORGOT_PASSWORD} element={<ForgotPassword />} />
+        <Route path={ROUTES.RESET_PASSWORD} element={<ResetPassword />} />
       </Routes>
     </Router>
   )

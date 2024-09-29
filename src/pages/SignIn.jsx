@@ -4,7 +4,7 @@ import { ROUTES } from '../utils/routes';
 
 export const SignIn = () => {
   const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('') // React hook form?
+  const [password, setPassword] = useState('')
 
   const handleClick = (event) => {
     event.preventDefault()
