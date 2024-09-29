@@ -15,10 +15,10 @@ export const ForgotPassword = () => {
         <p>Enter your email to recieve a reset link</p>
       </div>
       <div className='box'>
-        <form>
+        <form onSubmit={handleClick}>
           <label>Your email <span className='asterisk'>*</span></label>
           <input type="email" name='email' id='email' required placeholder='you@henrique.dev' />
-          <button onClick={handleClick}>Submit</button>
+          <button type='submit'>Submit</button>
           <Link to={ROUTES.SIGN_IN} className='back'>⭠ back to login page</Link>
         </form>
       </div>
