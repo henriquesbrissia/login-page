@@ -1,13 +1,22 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../utils/routes';
+import { server } from '../utils/axios';
 
 export const ResetPassword = () => {
   const [password, setPassword] = useState('')
 
   const handleClick = (event) => {
     event.preventDefault()
-    alert(`Password ${password}`)
+    server.post('/api/user/reset-password', {
+      password,
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   return (
