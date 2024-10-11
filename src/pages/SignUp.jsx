@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../utils/routes';
+import { server } from '../utils/axios';
 
 export const SignUp = () => {
   const [email, setEmail] = useState('')
@@ -8,7 +9,16 @@ export const SignUp = () => {
 
   const handleClick = (event) => {
     event.preventDefault()
-    alert(`Email: ${email}\nPassword ${password}`)
+    server.post('/api/user/sign-up', {
+      email,
+      password,
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   return (
