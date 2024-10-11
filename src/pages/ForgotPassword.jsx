@@ -1,11 +1,24 @@
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../utils/routes';
+import { server } from '../utils/axios';
 
 export const ForgotPassword = () => {
-  const navigate = useNavigate();
+const [email, setEmail] = useState('')
 
-  const handleClick = () => {
-    navigate(ROUTES.RESET_PASSWORD)
+  const navigate = useNavigate();
+  const handleClick = (event) => {
+    event.preventDefault()
+    server.post('/api/user/sign-in', {
+      email,
+    })
+    .then(function (response) {
+      console.log(response);
+      navigate(ROUTES.RESET_PASSWORD)
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   return (
@@ -17,7 +30,7 @@ export const ForgotPassword = () => {
       <div className='box'>
         <form onSubmit={handleClick}>
           <label>Your email <span className='asterisk'>*</span></label>
-          <input type="email" name='email' id='email' required placeholder='you@henrique.dev' />
+          <input type="email" value={email} id='email' onChange={(e) => setEmail(e.target.value)} required placeholder='you@henrique.dev' />
           <button type='submit'>Submit</button>
           <Link to={ROUTES.SIGN_IN} className='back'>⭠ back to login page</Link>
         </form>
