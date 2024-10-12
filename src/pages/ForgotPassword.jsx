@@ -9,7 +9,7 @@ const [email, setEmail] = useState('')
   const navigate = useNavigate();
   const handleClick = (event) => {
     event.preventDefault()
-    server.post('/api/user/sign-in', {
+    server.post('/api/user/forgot-password', {
       email,
     })
     .then(function (response) {
