@@ -7,7 +7,7 @@ export const ForgotPassword = () => {
 const [email, setEmail] = useState('')
 
   const navigate = useNavigate();
-  const handleClick = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault()
     server.post('/api/user/forgot-password', {
       email,
@@ -28,8 +28,8 @@ const [email, setEmail] = useState('')
         <p>Enter your email to recieve a reset link</p>
       </div>
       <div className='box'>
-        <form onSubmit={handleClick}>
-          <label>Your email <span className='asterisk'>*</span></label>
+        <form onSubmit={handleSubmit}>
+          <label>Your email <span className='important'>*</span></label>
           <input type="email" value={email} id='email' onChange={(e) => setEmail(e.target.value)} required placeholder='you@henrique.dev' />
           <button type='submit'>Submit</button>
           <Link to={ROUTES.SIGN_IN} className='back'>⭠ back to login page</Link>

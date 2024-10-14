@@ -6,7 +6,7 @@ import { server } from '../utils/axios';
 export const ResetPassword = () => {
   const [password, setPassword] = useState('')
 
-  const handleClick = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault()
     server.post('/api/user/reset-password', {
       password,
@@ -26,10 +26,10 @@ export const ResetPassword = () => {
         <p>Enter your new password</p>
       </div>
       <div className='box'>
-        <form onSubmit={handleClick}>
-          <label>New Password <span className='asterisk'>*</span></label>
+        <form onSubmit={handleSubmit}>
+          <label>New Password <span className='important'>*</span></label>
           <input type='password' value={password} id="password" onChange={(e) => setPassword(e.target.value)} required placeholder='Your Password' />
-          <label>Confirm Password <span className='asterisk'>*</span></label>
+          <label>Confirm Password <span className='important'>*</span></label>
           <input type='password' name="passoword" id="confirm-password" required placeholder='Confirm your new Password' />
           <button type='submit'>Reset Password</button>
           <Link to={ROUTES.SIGN_IN} className='back'>⭠ back to login page</Link>

@@ -7,7 +7,7 @@ export const SignUp = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const handleClick = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault()
     server.post('/api/user/sign-up', {
       email,
@@ -28,10 +28,10 @@ export const SignUp = () => {
         <p>Enter your data to start enjoying</p>
       </div>
       <div className='box'>
-        <form onSubmit={handleClick}>
-          <label>Email <span className='asterisk'>*</span></label>
+        <form onSubmit={handleSubmit}>
+          <label>Email <span className='important'>*</span></label>
           <input type="email" value={email} id='email' onChange={(e) => setEmail(e.target.value)} required placeholder='you@henrique.dev' />
-          <label>Password <span className='asterisk'>*</span></label>
+          <label>Password <span className='important'>*</span></label>
           <input type='password' value={password} id="password" onChange={(e) => setPassword(e.target.value)} required placeholder='Your Password' />
           <input type='password' name="passoword" id="confirm-password" required placeholder='Confirm your Password' />
           <button type='submit'>Sign up</button>
