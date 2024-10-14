@@ -1,24 +1,33 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
 import { ROUTES } from '../utils/routes';
 import { server } from '../utils/axios';
+
+const signUp = async ({email, password}) => {
+  const response = await server.post('/api/user/sign-up', {
+    email,
+    password,
+  })
+  return response.data
+}
 
 export const SignUp = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const {mutate, isLoading, isError, error} = useMutation(signUp, {
+    onSuccess: (data) => {
+      console.log('Sign-in successful', data)
+    },
+    onError: (error) => {
+      console.log('Error signing in', error)
+    }
+  });
+
   const handleSubmit = (event) => {
     event.preventDefault()
-    server.post('/api/user/sign-up', {
-      email,
-      password,
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    mutate({ email, password })
   }
 
   return (
@@ -34,7 +43,8 @@ export const SignUp = () => {
           <label>Password <span className='important'>*</span></label>
           <input type='password' value={password} id="password" onChange={(e) => setPassword(e.target.value)} required placeholder='Your Password' />
           <input type='password' name="passoword" id="confirm-password" required placeholder='Confirm your Password' />
-          <button type='submit'>Sign up</button>
+          <button type='submit' disabled={isLoading}>{isLoading ? 'Signing up...' : 'Sign up'}</button>
+          {isError && <p className='important'>Error: {error.message}</p>}
           <Link to={ROUTES.SIGN_IN} className='back'>⭠ back to login page</Link>
         </form>
       </div>
