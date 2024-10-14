@@ -1,24 +1,30 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
 import { ROUTES } from '../utils/routes';
 import { server } from '../utils/axios';
+
+const signIn = async ({ email, password }) => {
+  const response = await server.post('/api/user/sign-in', { email, password });
+  return response.data;
+};
 
 export const SignIn = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const handleClick = (event) => {
+  const { mutate, isLoading, isError, error } = useMutation(signIn, {
+    onSuccess: (data) => {
+      console.log('Sign-in successful', data);
+    },
+    onError: (error) => {
+      console.error('Error signing in', error);
+    },
+  });
+  
+  const handleSubmit = (event) => {
     event.preventDefault()
-    server.post('/api/user/sign-in', {
-      email,
-      password,
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    mutate({ email, password })
   }
 
   return (
@@ -28,13 +34,14 @@ export const SignIn = () => {
         <p>Do not have an account yet? <Link to={ROUTES.SIGN_UP}>Create account</Link></p>
       </div>
       <div className='box'>
-        <form onSubmit={handleClick}>
-          <label>Email <span className='asterisk'>*</span></label>
+        <form onSubmit={handleSubmit}>
+          <label>Email <span className='important'>*</span></label>
           <input type="email" value={email} id='email' onChange={(e) => setEmail(e.target.value)} required placeholder='you@henrique.dev' />
-          <label>Password <span className='asterisk'>*</span></label>
+          <label>Password <span className='important'>*</span></label>
           <input type='password' value={password} id="password" onChange={(e) => setPassword(e.target.value)} required placeholder='Your password' />
           <Link to={ROUTES.FORGOT_PASSWORD} className='forgot'>Forgot password?</Link>
-          <button type='submit'>Sign in</button>
+          <button type='submit' disabled={isLoading}>{isLoading ? 'Signing in...' : 'Sign in'}</button>
+          {isError && <p className='important'>Error: {error.message}</p>}
         </form>
       </div>
     </>
