@@ -19,7 +19,7 @@ export const SignIn = () => {
     },
     onError: (error) => {
       console.error('Error signing in', error);
-    },
+    }
   });
   
   const handleSubmit = (event) => {
