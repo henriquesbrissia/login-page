@@ -17,6 +17,7 @@ export const SignUp = () => {
   const [password, setPassword] = useState('')
 
   const {mutate, isLoading, isError, error} = useMutation(signUp, {
+    mutationFn: signUp,
     onSuccess: (data) => {
       console.log('Sign-in successful', data)
     },
@@ -26,7 +27,12 @@ export const SignUp = () => {
   });
 
   const handleSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
+  const confirmPassword = event.target['confirm-password'].value;
+  if (password !== confirmPassword) {
+    console.error("Passwords do not match");
+    return;
+  }
     mutate({ email, password })
   }
 
@@ -42,7 +48,7 @@ export const SignUp = () => {
           <input type="email" value={email} id='email' onChange={(e) => setEmail(e.target.value)} required placeholder='you@henrique.dev' />
           <label>Password <span className='important'>*</span></label>
           <input type='password' value={password} id="password" onChange={(e) => setPassword(e.target.value)} required placeholder='Your Password' />
-          <input type='password' name="passoword" id="confirm-password" required placeholder='Confirm your Password' />
+          <input type='password' name="password" id="confirm-password" required placeholder='Confirm your Password' />
           <button type='submit' disabled={isLoading}>{isLoading ? 'Signing up...' : 'Sign up'}</button>
           {isError && <p className='important'>Error: {error.message}</p>}
           <Link to={ROUTES.SIGN_IN} className='back'>⭠ back to login page</Link>
