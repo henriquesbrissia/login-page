@@ -16,6 +16,7 @@ const [email, setEmail] = useState('')
 
   const navigate = useNavigate();
   const {mutate, isLoading, isError, error } = useMutation(forgotPassword, {
+    mutationFn: forgotPassword,
     onSuccess: (data) => {
       console.log('Reset token requested', data)
       navigate(ROUTES.RESET_PASSWORD)
@@ -33,7 +34,7 @@ const [email, setEmail] = useState('')
   return (
     <>
       <div>
-        <h1>Forgot your passoword?</h1>
+        <h1>Forgot your password?</h1>
         <p>Enter your email to recieve a reset token</p>
       </div>
       <div className='box'>
