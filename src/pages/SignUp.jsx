@@ -2,15 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { ROUTES } from '../utils/routes';
-import { server } from '../utils/axios';
-
-const signUp = async ({email, password}) => {
-  const response = await server.post('/api/user/sign-up', {
-    email,
-    password,
-  })
-  return response.data
-}
+import { signUp } from '../utils/mutations';
 
 export const SignUp = () => {
   const [email, setEmail] = useState('')

@@ -2,15 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { ROUTES } from '../utils/routes';
-import { server } from '../utils/axios';
-
-const resetPassword = async ({ resetToken, newPassword }) => {
-  const response = await server.post('/api/user/reset-password', {
-    resetToken,
-    newPassword,
-  });
-  return response.data;
-};
+import { resetPassword } from '../utils/mutations';
 
 export const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState('');
@@ -30,8 +22,6 @@ export const ResetPassword = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    // Verifica se as senhas coincidem antes de enviar a requisição
     if (newPassword !== confirmPassword) {
       return alert('Passwords do not match!');
     }

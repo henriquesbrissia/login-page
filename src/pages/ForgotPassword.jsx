@@ -2,14 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { ROUTES } from '../utils/routes';
-import { server } from '../utils/axios';
-
-const forgotPassword = async ({email}) => {
-  const response = await server.post('/api/user/forgot-password', {
-    email,
-  })
-  return response.data
-}
+import { forgotPassword } from '../utils/mutations';
 
 export const ForgotPassword = () => {
 const [email, setEmail] = useState('')
