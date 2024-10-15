@@ -7,9 +7,10 @@ import { resetPassword } from '../utils/mutations';
 export const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  
   const navigate = useNavigate();
 
-  const { mutate, isLoading, isError, error } = useMutation(resetPassword, {
+  const { mutate, isLoading, isError, error } = useMutation({
     mutationFn: resetPassword,
     onSuccess: (data) => {
       console.log('Password successfully redefined', data);

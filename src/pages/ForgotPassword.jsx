@@ -8,7 +8,7 @@ export const ForgotPassword = () => {
 const [email, setEmail] = useState('')
 
   const navigate = useNavigate();
-  const {mutate, isLoading, isError, error } = useMutation(forgotPassword, {
+  const {mutate, isLoading, isError, error } = useMutation({
     mutationFn: forgotPassword,
     onSuccess: (data) => {
       console.log('Reset token requested', data)

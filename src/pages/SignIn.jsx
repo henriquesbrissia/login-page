@@ -8,7 +8,7 @@ export const SignIn = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const { mutate, isLoading, isError, error } = useMutation(signIn, {
+  const { mutate, isLoading, isError, error } = useMutation({
     mutationFn: signIn,
     onSuccess: (data) => {
       console.log('Sign-in successful', data);
