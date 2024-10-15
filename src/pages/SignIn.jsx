@@ -14,6 +14,7 @@ export const SignIn = () => {
   const [password, setPassword] = useState('')
 
   const { mutate, isLoading, isError, error } = useMutation(signIn, {
+    mutationFn: signIn,
     onSuccess: (data) => {
       console.log('Sign-in successful', data);
     },
