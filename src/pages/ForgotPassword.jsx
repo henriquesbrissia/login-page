@@ -5,9 +5,10 @@ import { ROUTES } from '../utils/routes';
 import { forgotPassword } from '../utils/mutations';
 
 export const ForgotPassword = () => {
-const [email, setEmail] = useState('')
+  const [email, setEmail] = useState('')
 
   const navigate = useNavigate();
+  
   const {mutate, isLoading, isError, error } = useMutation({
     mutationFn: forgotPassword,
     onSuccess: (data) => {
