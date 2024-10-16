@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { ROUTES } from '../utils/routes';
 import { signUp } from '../utils/mutations';
@@ -8,13 +8,16 @@ export const SignUp = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const navigate = useNavigate();
+
   const {mutate, isLoading, isError, error} = useMutation({
     mutationFn: signUp,
     onSuccess: (data) => {
-      console.log('Sign-in successful', data)
+      console.log('Sign-up successful', data)
+      navigate(ROUTES.SIGN_IN)
     },
     onError: (error) => {
-      console.log('Error signing in', error)
+      console.log('Error signing up', error)
     }
   });
 
