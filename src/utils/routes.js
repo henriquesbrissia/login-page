@@ -4,4 +4,5 @@ export const ROUTES = {
   FORGOT_PASSWORD: '/forgot-password',
   RESET_PASSWORD: '/reset-password',
   HOME: '/',
+  DASHBOARD: '/dashboard',
 };
