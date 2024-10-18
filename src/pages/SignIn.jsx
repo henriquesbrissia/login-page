@@ -3,15 +3,17 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { ROUTES } from '../utils/routes';
 import { signIn } from '../utils/mutations';
+import { useAuth } from '../hooks/useAuth';
 
 export const SignIn = () => {
+  const { login } = useAuth();
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const { mutate, isLoading, isError, error } = useMutation({
     mutationFn: signIn,
     onSuccess: (data) => {
-      console.log('Sign-in successful', data);
+      login(data.token);
     },
     onError: (error) => {
       console.error('Error signing in', error);
