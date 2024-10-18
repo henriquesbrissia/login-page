@@ -3,6 +3,6 @@ import { useAuth } from '../hooks/useAuth';
 import { ROUTES } from './routes';
 
 export const ProtectedRoutes = () => {
-  const { auth } = useAuth()
-  return auth ? <Outlet /> : <Navigate to={ROUTES.SIGN_IN} />;
+  const { token } = useAuth()
+  return token ? <Outlet /> : <Navigate to={ROUTES.SIGN_IN} />;
 };
