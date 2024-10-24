@@ -3,6 +3,11 @@ import { useAuth } from '../hooks/useAuth';
 import { ROUTES } from './routes';
 
 export const ProtectedRoutes = () => {
-  const { token } = useAuth()
-  return token ? <Outlet /> : <Navigate to={ROUTES.SIGN_IN} />;
+  const { user, isPending } = useAuth()
+
+  if (isPending) {
+    return <span>Loading...</span>
+  }
+
+  return user ? <Outlet /> : <Navigate to={ROUTES.SIGN_IN} />;
 };
