@@ -1,13 +1,19 @@
 import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "./routes";
+import { useQuery } from '@tanstack/react-query';
+import { fetchUser } from '../utils/queries';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   
-  const getToken = () => localStorage.getItem('token');
+  const { data: user, isPending, isError, error } = useQuery({
+    queryKey: ['user'],
+    queryFn: fetchUser,
+    retry: false
+  });
 
   const login = (token) => {
     localStorage.setItem('token', token)
@@ -20,7 +26,7 @@ export const AuthProvider = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ login, logout, getToken }}>
+    <AuthContext.Provider value={{ login, logout, user, isPending, isError, error }}>
       {children}
     </AuthContext.Provider>
   )
